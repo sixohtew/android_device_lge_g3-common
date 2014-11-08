@@ -144,7 +144,7 @@
     <ctl name="AIF1_CAP Mixer SLIM TX7" value="0" />
     <ctl name="AIF1_CAP Mixer SLIM TX8" value="0"/>
     <ctl name="CLASS_H_DSM MUX" value="ZERO" />
-   <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia4" value="0" />
+    <ctl name="SLIMBUS_0_RX Audio Mixer MultiMedia4" value="0" />
     <ctl name="AFE_PCM_RX Audio Mixer MultiMedia4" value="0" />
     <ctl name="INTERNAL_FM_RX Audio Mixer MultiMedia4" value="0" />
     <ctl name="HDMI Mixer MultiMedia4" value="0" />
@@ -483,6 +483,10 @@
         <path name="voice-call bt-sco" />
     </path>
 
+    <path name="bt-sco-samplerate">
+        <ctl name="Internal BTSCO SampleRate" value="rate_8000" />
+    </path>
+
     <path name="bt-sco-wb-samplerate">
         <ctl name="AUX PCM SampleRate" value="rate_16000" />
     </path>
@@ -531,7 +535,7 @@
         <path name="incall-rec-uplink" />
     </path>
 
-   <path name="hfp-sco">
+    <path name="hfp-sco">
         <ctl name="SLIMBUS_0_RX Port Mixer SEC_AUX_PCM_TX" value="1" />
         <ctl name="SEC_AUX_PCM_RX Audio Mixer MultiMedia6" value="1" />
         <ctl name="MultiMedia6 Mixer SLIM_0_TX" value="1" />
