@@ -36,6 +36,8 @@ import com.android.internal.telephony.uicc.IccCardStatus;
  */
 public class LgeLteRIL extends RIL implements CommandsInterface {
     private Message mPendingGetSimStatus;
+    private Message mPendingCdmaSubSrc;
+    private int mPendingCdmaSub;
 
     public LgeLteRIL(Context context, int preferredNetworkType,
             int cdmaSubscription, Integer instanceId) {
@@ -101,12 +103,28 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
     }
 
     @Override
+    public void setCdmaSubscriptionSource(int cdmaSubscription , Message response) {
+        if (mState != RadioState.RADIO_ON) {
+            mPendingCdmaSubSrc = response;
+            mPendingCdmaSub = cdmaSubscription;
+        } else {
+            super.setCdmaSubscriptionSource(cdmaSubscription, response);
+        }
+    }
+
+    @Override
     protected void switchToRadioState(RadioState newState) {
         super.switchToRadioState(newState);
 
-        if (newState == RadioState.RADIO_ON && mPendingGetSimStatus != null) {
-            super.getIccCardStatus(mPendingGetSimStatus);
-            mPendingGetSimStatus = null;
+        if (newState == RadioState.RADIO_ON) {
+            if (mPendingGetSimStatus != null) {
+                super.getIccCardStatus(mPendingGetSimStatus);
+                mPendingGetSimStatus = null;
+            }
+            if (mPendingCdmaSubSrc != null) {
+                super.setCdmaSubscriptionSource(mPendingCdmaSub, mPendingCdmaSubSrc);
+                mPendingCdmaSubSrc = null;
+            }
         }
     }
 
