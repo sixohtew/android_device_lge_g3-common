@@ -19,6 +19,7 @@ package com.android.internal.telephony;
 import static com.android.internal.telephony.RILConstants.*;
 
 import android.content.Context;
+import android.os.AsyncResult;
 import android.os.Message;
 import android.os.Parcel;
 import android.util.Log;
@@ -107,5 +108,19 @@ public class LgeLteRIL extends RIL implements CommandsInterface {
             super.getIccCardStatus(mPendingGetSimStatus);
             mPendingGetSimStatus = null;
         }
+    }
+
+    @Override
+    public void setCellInfoListRate(int rateInMillis, Message response) {
+        if(mRilVersion < 10) {
+            if (response != null) {
+                CommandException ex = new CommandException(
+                    CommandException.Error.REQUEST_NOT_SUPPORTED);
+                AsyncResult.forMessage(response, null, ex);
+                response.sendToTarget();
+            }
+            return;
+        }
+        super.setCellInfoListRate(rateInMillis, response);
     }
 }
