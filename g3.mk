@@ -200,6 +200,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.galbi.thermal_conf.sh
 
+# RIL
+PRODUCT_PACKAGES += \
+    libreference-ril \
+    libril \
+    librilutils \
+    radiooptions \
+    reference-ril \
+    rild
+
 # Torch
 PRODUCT_PACKAGES += \
     Torch
