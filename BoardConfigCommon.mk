@@ -150,6 +150,7 @@ TW_NO_SCREEN_TIMEOUT := true
 MR_INPUT_TYPE := type_b
 MR_INIT_DEVICES := device/lge/g3-common/mr_init_devices.c
 MR_DPI := xhdpi
+MR_DPI_FONT := 200
 MR_KEXEC_MEM_MIN := 0x20000000
 MR_KEXEC_DTB := true
 MR_USE_MROM_FSTAB := true
