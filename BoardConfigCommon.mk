@@ -133,3 +133,26 @@ BOARD_SEPOLICY_UNION := \
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
+
+# TWRP
+DEVICE_RESOLUTION := 1440x2560
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TW_NO_USB_STORAGE := true
+TW_INCLUDE_JB_CRYPTO := true
+BOARD_SUPPRESS_SECURE_ERASE := true
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
+TW_BRIGHTNESS_PATH := "/sys/devices/mdp.0/qcom\x2cmdss_fb_primary.175/leds/lcd-backlight/brightness"
+TW_MAX_BRIGHTNESS := 255
+TW_NO_SCREEN_TIMEOUT := true
+
+# MultiROM
+MR_INPUT_TYPE := type_b
+MR_INIT_DEVICES := device/lge/g3-common/mr_init_devices.c
+MR_DPI := xhdpi
+MR_KEXEC_MEM_MIN := 0x20000000
+MR_KEXEC_DTB := true
+MR_USE_MROM_FSTAB := true
+MR_FSTAB := device/lge/g3-common/twrp.fstab
+MR_DEVICE_HOOKS := device/lge/g3-common/mr_hooks.c
+MR_DEVICE_HOOKS_VER := 3
